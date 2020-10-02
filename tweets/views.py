@@ -10,17 +10,18 @@ def home_view(request, *args, **kwargs):
 
 
 def tweet_detail_view(request, tweet_id, *args, **kwargs):
-    """ Rest api view
-        consume by javascript or Swift/java/Ios/Andriod 
-        return json data """
+    """ REST API VIEW
+        consume by Javascripts or Swift/Java/IOS/Andriod
+        return json data
+    """
+    data = {
+        "id": tweet_id, 
+    }
+    status = 200
     try:
         obj = Tweet.objects.get(id=tweet_id)
+        data['content'] = obj.content
     except:
-        raise Http404
-
-        data = {
-            "id" : tweet_id,
-            "content": obj.content,
-            #'image_path': obj.image.url
-        }
-    return JsonResponse(data) # json.dump content_type ='application/json'
+        data['message'] = "Not found"
+        status = 404
+    return JsonResponse(data,status=status)  # json.dumps content_type='application/json';
