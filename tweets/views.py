@@ -9,13 +9,26 @@ def home_view(request, *args, **kwargs):
     return render(request, "pages/home.html", context={}, status=200)
 
 
+def tweet_list_view(request, *args, **kwargs):
+    """ REST API VIEW
+        consume by Javascripts or Swift/Java/IOS/Andriod
+        return json data
+    """
+    qs = Tweet.objects.all()
+    tweet_list = [{"id": x.id, "content": x.content} for x in qs]
+    data = {
+        "response": tweet_list
+    }
+    return JsonResponse(data)
+
+
 def tweet_detail_view(request, tweet_id, *args, **kwargs):
     """ REST API VIEW
         consume by Javascripts or Swift/Java/IOS/Andriod
         return json data
     """
     data = {
-        "id": tweet_id, 
+        "id": tweet_id,
     }
     status = 200
     try:
@@ -24,4 +37,5 @@ def tweet_detail_view(request, tweet_id, *args, **kwargs):
     except:
         data['message'] = "Not found"
         status = 404
-    return JsonResponse(data,status=status)  # json.dumps content_type='application/json';
+    # json.dumps content_type='application/json';
+    return JsonResponse(data, status=status)
