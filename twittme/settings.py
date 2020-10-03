@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os.path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # remember on same level as manage.py
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'twittme.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR),"templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
