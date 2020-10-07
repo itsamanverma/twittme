@@ -11,7 +11,7 @@
     </div>
 </div>
 
-<div id='tweets'>
+<div class="row" id='tweets'>
     Loading...
 </div>
 
@@ -38,7 +38,7 @@
     }
 
     function formatTweetElement(tweet) {
-        var formattedTweet = "<div class='mb-4 tweet' id='tweet-" + tweet.id
+        var formattedTweet = "<div class='col-12 border-top border-bottom py-3 mb-4 tweet' id='tweet-" + tweet.id
             + "'><p>" + tweet.content +
             "</p><div class='btn-group'>" + LikeBtn(tweet) +
             "</div></div>"
